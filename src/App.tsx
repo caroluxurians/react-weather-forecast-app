@@ -1,4 +1,3 @@
-import `./index.css`;
 import { useEffect, useState } from "react";
 
 // test: key: ef0494f73cfc0bd0feeb383fc9b32268
@@ -17,7 +16,6 @@ useEffect(() => {
 }, [latitude, longitude]);
 
 const App = () => {
-
   return (
     <>
       <div className="App"></div>
