@@ -1,16 +1,26 @@
-import { useState } from "react";
+import `./index.css`;
+import { useEffect, useState } from "react";
 
-// test
+// test: key: ef0494f73cfc0bd0feeb383fc9b32268
+
+const [latitude, setLatitude] = useState([]);
+const [longitude, setLongitude] = useState([]);
+
+useEffect(() => {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    setLatitude(position.coords.latitude);
+    setLongitude(position.coords.longitude);
+  });
+
+  console.log(`Latitude is: ${latitude}`);
+  console.log(`Longitude is ${longitude}`);
+}, [latitude, longitude]);
 
 const App = () => {
-  const [fontSize, setFontSize] = useState(12);
 
   return (
     <>
-      <div style={{ fontSize }}>This is my test React project.</div>
-      <button type="button" onClick={() => setFontSize(fontSize + 5)}>
-        Increase font size!
-      </button>
+      <div className="App"></div>
     </>
   );
 };
