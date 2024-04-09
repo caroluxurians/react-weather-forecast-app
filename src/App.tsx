@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { Weather } from "./components/weather";
 
 // test: key: ef0494f73cfc0bd0feeb383fc9b32268
 
 const App = () => {
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
-  const [data, setData] = useState(0);
+  const [latitude, setLatitude] = useState<number>(null);
+  const [longitude, setLongitude] = useState<number>(null);
+  const [data, setData] = useState<any>(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -33,7 +34,9 @@ const App = () => {
     }
   }, [latitude, longitude]);
 
-  return <div className="App" />;
+  return (
+    <div className="App">{data.main && <Weather weatherData={data} />}</div>
+  );
 };
 
 export default App;
