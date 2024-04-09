@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Weather } from "./components/weather";
+import Weather from "./components/Weather";
 
 // test: key: ef0494f73cfc0bd0feeb383fc9b32268
 
@@ -35,7 +35,7 @@ const App = () => {
   }, [latitude, longitude]);
 
   return (
-    <div className="App">{data.main && <Weather weatherData={data} />}</div>
+    <div className="App">{data?.main && <Weather weatherData={data} />}</div>
   );
 };
 
