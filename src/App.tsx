@@ -14,16 +14,17 @@ const App = () => {
         setLongitude(position.coords.longitude);
       });
 
-      await fetch(`${process.env.REACT_APP_API_URL}/weather/
-    ?latitude=${latitude}&longitude=${longitude}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`)
+      await fetch(
+        `${"https://api.openweathermap.org/data/2.5"}/weather/?lat=${latitude}&lon=${longitude}&units=metric&APPID=${"ef0494f73cfc0bd0feeb383fc9b32268"}`
+      )
         .then((response) => response.json())
         .then((result) => {
           setData(result);
           console.log(result);
         });
     };
-    // console.log(`Latitude is: ${latitude}`);
-    // console.log(`Longitude is ${longitude}`);
+    console.log(`Latitude is: ${latitude}`);
+    console.log(`Longitude is ${longitude}`);
     fetchData();
   }, [latitude, longitude]);
 
