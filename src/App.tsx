@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Weather from "./components/Weather";
+import WeatherDataType from "./types/WeatherDataType";
 
 // test: key: ef0494f73cfc0bd0feeb383fc9b32268
 
 const App = () => {
   const [latitude, setLatitude] = useState<number>(null);
   const [longitude, setLongitude] = useState<number>(null);
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<WeatherDataType>(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
