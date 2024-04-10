@@ -1,6 +1,7 @@
 import React from "react";
 // import "./styles.css";
 import { Card } from "semantic-ui-react";
+import moment from "moment";
 import WeatherDataType from "../types/WeatherDataType";
 
 type WeatherProps = {
@@ -30,6 +31,18 @@ const Weather = ({ weatherData }: WeatherProps) => {
         <p>
           Description:
           {weatherData.weather[0].description}
+        </p>
+        <p>
+          Humidity:
+          {weatherData.main.humidity} %
+        </p>
+        <p>
+          Day:
+          {moment().format("dddd")}
+        </p>
+        <p>
+          Date:
+          {moment().format("LL")}
         </p>
       </Card.Content>
     </Card>

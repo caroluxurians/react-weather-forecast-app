@@ -7,6 +7,7 @@ type WeatherDataType = {
     temp_min: number
     temp_max: number
     pressure: number
+    humidity: number
   }
   sys: {
     type: number
