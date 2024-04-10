@@ -9,22 +9,23 @@ type WeatherProps = {
 
 const Weather = ({ weatherData }: WeatherProps) => {
   return (
-    <Card>
-      <Card.Content>
+    <Card className="ui centered card">
+      <Card.Content id="content">
         <Card.Header className="header">
           City name: {weatherData.name}
         </Card.Header>
         <p>
           Temprature:
           {weatherData.main.temp}
+          &deg;C
         </p>
         <p>
           Sunrise:
-          {weatherData.sys.sunrise}
+          {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString("en-CZ")}
         </p>
         <p>
           Sunset:
-          {weatherData.sys.sunset}
+          {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString("en-CZ")}
         </p>
         <p>
           Description:
