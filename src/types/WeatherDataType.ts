@@ -15,7 +15,10 @@ type WeatherDataType = {
     sunrise: number
     sunset: number
   }
-  weather: Array <string | number>
+  weather: { description: string,
+    icon: string,
+    id: number,
+    main: string }[]
 };
 
 export default WeatherDataType;
