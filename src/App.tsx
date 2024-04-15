@@ -35,9 +35,7 @@ const App = () => {
     }
   }, [latitude, longitude]);
 
-  return (
-    <div className="App">{data?.main && <Weather weatherData={data} />}</div>
-  );
+  return data?.main && <Weather weatherData={data} />;
 };
 
 export default App;
