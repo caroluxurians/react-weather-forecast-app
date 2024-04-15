@@ -3,33 +3,49 @@ import React from "react";
 // import { Card } from "semantic-ui-react";
 import moment from "moment";
 import WeatherDataType from "../types/WeatherDataType";
+import Refresh from "../icons/Refresh";
 
 type WeatherProps = {
   weatherData: WeatherDataType;
 };
 
+const refresh = () => {
+  window.location.reload();
+};
+
 const Weather = ({ weatherData }: WeatherProps) => {
   return (
     <div className="main">
-      <p className="header">
-        City name:
+      <p className="header flex">
         {weatherData.name}
+        <button type="button" className="button" onClick={refresh}>
+          <Refresh width={20} />
+        </button>
       </p>
+
       <div className="flex">
         <p className="day">
-          Day:
-          {moment().format("dddd")}
+          {moment().format("dddd")}, {moment().format("LL")}
         </p>
-        <p className="day">{moment().format("LL")}</p>
+        <p className="day">{weatherData.weather[0].description}</p>
       </div>
+
       <div className="flex">
         <p className="weatherCat">
           Temperature: {weatherData.main.temp}
           &deg;C
         </p>
-        <p className="weatherCat">
-          Humidity:
-          {weatherData.main.humidity} %
+        <p className="weatherCat">Humidity: {weatherData.main.humidity} %</p>
+      </div>
+
+      <div className="flex">
+        <p className="sun">
+          Sunrise:{" "}
+          {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString("en-CZ")}
+        </p>
+        <p className="sun">
+          Sunset:{" "}
+          {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString("en-CZ")}
         </p>
       </div>
     </div>
@@ -37,17 +53,7 @@ const Weather = ({ weatherData }: WeatherProps) => {
 };
 export default Weather;
 
-/* <p>
-        Sunrise:
-        {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString("en-CZ")}
-      </p>
-      <p>
-        Sunset:
-        {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString("en-CZ")}
-      </p>
-      <p>
-        Description:
-        {weatherData.weather[0].description}
-      </p>
+/* 
+      
 
        */

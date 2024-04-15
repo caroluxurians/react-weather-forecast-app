@@ -26,15 +26,26 @@
 
 .day {
   padding: 15px;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 500;
 }
 
 .weatherCat {
   padding: 15px;
+  font-size: 18px;
+}
+
+.sun {
+  padding: 15px;
+  font-size: 16px;
 }
 
 .flex {
   display: flex;
   justify-content: space-between;
+}
+
+.button {
+  height: 30px;
+  width: 30px;
 }
