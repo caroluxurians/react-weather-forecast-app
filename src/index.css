@@ -42,10 +42,19 @@
 
 .flex {
   display: flex;
-  justify-content: space-between;
 }
 
 .button {
   height: 30px;
   width: 30px;
+  border-radius: 50px;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
 }

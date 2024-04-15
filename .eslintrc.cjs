@@ -19,5 +19,7 @@ module.exports = {
         "unnamedComponents": "arrow-function"
       }
     ],
+    'react/require-default-props': ['error', { functions: 'defaultArguments' }],
+    "react/jsx-one-expression-per-line": "off",
   },
 };
