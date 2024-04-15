@@ -23,6 +23,12 @@
   font-size: 26px;
   border-radius: 15px;
 }
+.search-div {
+  background-color: #32404b;
+  padding: 10px;
+  font-size: 26px;
+  border-radius: 15px;
+}
 
 .day {
   padding: 15px;
@@ -57,4 +63,15 @@
 .flex-center {
   justify-content: center;
   align-items: center;
+}
+
+.form {
+  ;
+}
+
+.searchbar {
+  width: 200px;
+  height: 30px ;
+  font-size: 16px;
+  border-radius: 15px;
 }

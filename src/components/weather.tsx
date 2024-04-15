@@ -4,6 +4,7 @@ import React from "react";
 import moment from "moment";
 import WeatherDataType from "../types/WeatherDataType";
 import Refresh from "../icons/Refresh";
+import Search from "./Search";
 
 type WeatherProps = {
   weatherData: WeatherDataType;
@@ -51,6 +52,10 @@ const Weather = ({ weatherData }: WeatherProps) => {
           Sunset:{" "}
           {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString("en-CZ")}
         </p>
+      </div>
+
+      <div className="search-div">
+        <Search />
       </div>
     </div>
   );
