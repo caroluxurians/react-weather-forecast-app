@@ -1,4 +1,4 @@
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
 // import "./styles.css";
 // import { Card } from "semantic-ui-react";
 import moment from "moment";
@@ -8,8 +8,8 @@ import Search from "./Search";
 
 type WeatherProps = {
   weatherData: WeatherDataType;
-  setLatitude: any;
-  setLongitude: any;
+  setLatitude: Dispatch<SetStateAction<number>>;
+  setLongitude: Dispatch<SetStateAction<number>>;
 };
 
 const refresh = () => {

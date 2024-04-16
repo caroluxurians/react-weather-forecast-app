@@ -1,7 +1,18 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
-const loadOptions = (inputValue, setOptions) => {
+type Options = {
+  id: string;
+  name: string;
+}[];
+type City = {
+  latitude: number;
+  longitude: number;
+  name: string;
+  countryCode: number;
+};
+
+const loadOptions = (inputValue: string, setOptions: Dispatch<SetStateAction<Options>>) => {
   return fetch(
     `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?minPopulation=100000&namePrefix=${inputValue}`,
     {
@@ -14,7 +25,7 @@ const loadOptions = (inputValue, setOptions) => {
   )
     .then((response) => response.json())
     .then((result) => {
-      const formattedResult = result.data.map((city) => {
+      const formattedResult = result.data.map((city: City) => {
         return {
           id: `${city.latitude} ${city.longitude}`,
           name: `${city.name}, ${city.countryCode}`,
@@ -26,8 +37,13 @@ const loadOptions = (inputValue, setOptions) => {
     .catch((err) => console.error(err));
 };
 
-const Search = ({ setLatitude, setLongitude }) => {
-  const [options, setOptions] = useState([]);
+type SearchProps = {
+  setLatitude: Dispatch<SetStateAction<number>>;
+  setLongitude: Dispatch<SetStateAction<number>>;
+};
+
+const Search = ({ setLatitude, setLongitude }: SearchProps) => {
+  const [options, setOptions] = useState<Options>([]);
   console.log(options);
   return (
     <div>
@@ -36,8 +52,8 @@ const Search = ({ setLatitude, setLongitude }) => {
         items={options}
         onSelect={(city) => {
           console.log(city.id.split(" "));
-          setLatitude(city.id.split(" ")[0]);
-          setLongitude(city.id.split(" ")[1]);
+          setLatitude(Number(city.id.split(" ")[0]));
+          setLongitude(Number(city.id.split(" ")[1]));
         }}
       />
     </div>

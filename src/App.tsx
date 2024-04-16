@@ -35,7 +35,13 @@ const App = () => {
     }
   }, [latitude, longitude]);
 
-  return data?.main && <Weather setLatitude={setLatitude} setLongitude={setLongitude} weatherData={data} />;
+  return data?.main && (
+    <Weather
+      setLatitude={setLatitude}
+      setLongitude={setLongitude}
+      weatherData={data}
+    />
+  );
 };
 
 export default App;
