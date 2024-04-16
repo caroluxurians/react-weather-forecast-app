@@ -8,6 +8,7 @@ const App = () => {
   const [latitude, setLatitude] = useState<number>(50.11262375912861);
   const [longitude, setLongitude] = useState<number>(14.469758137148327);
   const [data, setData] = useState<WeatherDataType>(null);
+  console.log(latitude, longitude);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {

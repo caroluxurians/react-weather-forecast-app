@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 * {
   margin: 0;
   font-family: 'Recursive', sans-serif;
@@ -11,8 +17,7 @@
 }
 
 .main {
-  margin: 50px auto;
-  width: 500px;
+  max-width: 500px;
   border-radius: 15px;
   background-color: #357eb5;
 }
