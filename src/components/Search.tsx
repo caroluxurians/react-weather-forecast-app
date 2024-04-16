@@ -48,10 +48,12 @@ const Search = ({ setLatitude, setLongitude }: SearchProps) => {
   return (
     <div>
       <ReactSearchAutocomplete
-        onSearch={(val) => loadOptions(val, setOptions)}
+        onSearch={(val) => {
+          if (val.length > 2) loadOptions(val, setOptions);
+        }}
+        inputDebounce={1000}
         items={options}
         onSelect={(city) => {
-          console.log(city.id.split(" "));
           setLatitude(Number(city.id.split(" ")[0]));
           setLongitude(Number(city.id.split(" ")[1]));
         }}

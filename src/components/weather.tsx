@@ -25,6 +25,7 @@ const Weather = ({ weatherData, setLatitude, setLongitude }: WeatherProps) => {
           type="button"
           className="button flex flex-center"
           onClick={refresh}
+          aria-label="Refresh"
         >
           <Refresh width={20} />
         </button>
@@ -39,7 +40,7 @@ const Weather = ({ weatherData, setLatitude, setLongitude }: WeatherProps) => {
 
       <div className="flex flex-between">
         <p className="weatherCat">
-          Temperature: {weatherData.main.temp}
+          Temperature: {Math.round(weatherData.main.temp)}
           &deg;C
         </p>
         <p className="weatherCat">Humidity: {weatherData.main.humidity} %</p>
