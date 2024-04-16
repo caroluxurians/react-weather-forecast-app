@@ -34,7 +34,7 @@ const Weather = ({ weatherData, setLatitude, setLongitude }: WeatherProps) => {
         <p className="day">
           {moment().format("dddd")}, {moment().format("LL")}
         </p>
-        <p className="day">{weatherData.weather[0].description}</p>
+        <p className="description">{weatherData.weather[0].description}</p>
       </div>
 
       <div className="flex flex-between">
