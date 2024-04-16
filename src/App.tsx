@@ -19,7 +19,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       await fetch(
-        `https://api.openweathermap.org/data/2.5/weather/?lat=${latitude}&lon=${longitude}&units=metric&APPID=ef0494f73cfc0bd0feeb383fc9b32268`
+        `https://api.openweathermap.org/data/2.5/weather/?lat=${latitude}&lon=${longitude}&units=metric&APPID=ef0494f73cfc0bd0feeb383fc9b32268`,
       )
         .then((response) => response.json())
         .then((result) => {
@@ -35,7 +35,7 @@ const App = () => {
     }
   }, [latitude, longitude]);
 
-  return data?.main && <Weather weatherData={data} />;
+  return data?.main && <Weather setLatitude={setLatitude} setLongitude={setLongitude} weatherData={data} />;
 };
 
 export default App;

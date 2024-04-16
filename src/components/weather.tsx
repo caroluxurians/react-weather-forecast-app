@@ -8,13 +8,15 @@ import Search from "./Search";
 
 type WeatherProps = {
   weatherData: WeatherDataType;
+  setLatitude: any;
+  setLongitude: any;
 };
 
 const refresh = () => {
   window.location.reload();
 };
 
-const Weather = ({ weatherData }: WeatherProps) => {
+const Weather = ({ weatherData, setLatitude, setLongitude }: WeatherProps) => {
   return (
     <div className="main">
       <p className="header flex flex-between">
@@ -55,7 +57,7 @@ const Weather = ({ weatherData }: WeatherProps) => {
       </div>
 
       <div className="search-div">
-        <Search />
+        <Search setLatitude={setLatitude} setLongitude={setLongitude} />
       </div>
     </div>
   );

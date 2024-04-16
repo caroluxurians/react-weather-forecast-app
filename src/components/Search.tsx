@@ -26,14 +26,19 @@ const loadOptions = (inputValue, setOptions) => {
     .catch((err) => console.error(err));
 };
 
-const Search = () => {
+const Search = ({ setLatitude, setLongitude }) => {
   const [options, setOptions] = useState([]);
-  console.log(options)
+  console.log(options);
   return (
     <div>
       <ReactSearchAutocomplete
         onSearch={(val) => loadOptions(val, setOptions)}
         items={options}
+        onSelect={(city) => {
+          console.log(city.id.split(" "));
+          setLatitude(city.id.split(" ")[0]);
+          setLongitude(city.id.split(" ")[1]);
+        }}
       />
     </div>
   );
