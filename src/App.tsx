@@ -24,14 +24,11 @@ const App = () => {
         .then((response) => response.json())
         .then((result) => {
           setData(result);
-          console.log(result);
         });
     };
 
     if (latitude && longitude) {
       fetchData();
-      console.log(`Latitude is: ${latitude}`);
-      console.log(`Longitude is ${longitude}`);
     }
   }, [latitude, longitude]);
 

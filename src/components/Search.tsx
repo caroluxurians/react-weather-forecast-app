@@ -31,7 +31,6 @@ const loadOptions = (inputValue: string, setOptions: Dispatch<SetStateAction<Opt
           name: `${city.name}, ${city.countryCode}`,
         };
       });
-      console.log(formattedResult);
       setOptions(formattedResult);
     })
     .catch((err) => console.error(err));
@@ -44,7 +43,7 @@ type SearchProps = {
 
 const Search = ({ setLatitude, setLongitude }: SearchProps) => {
   const [options, setOptions] = useState<Options>([]);
-  console.log(options);
+
   return (
     <div>
       <ReactSearchAutocomplete
