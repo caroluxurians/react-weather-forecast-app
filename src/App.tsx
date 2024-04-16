@@ -5,8 +5,8 @@ import WeatherDataType from "./types/WeatherDataType";
 // test: key: ef0494f73cfc0bd0feeb383fc9b32268
 
 const App = () => {
-  const [latitude, setLatitude] = useState<number>(null);
-  const [longitude, setLongitude] = useState<number>(null);
+  const [latitude, setLatitude] = useState<number>(50.11262375912861);
+  const [longitude, setLongitude] = useState<number>(14.469758137148327);
   const [data, setData] = useState<WeatherDataType>(null);
 
   useEffect(() => {
