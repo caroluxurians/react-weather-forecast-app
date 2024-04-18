@@ -1,5 +1,6 @@
 import { TextField, Autocomplete } from "@mui/material";
 import { Dispatch, SetStateAction, useState } from "react";
+import _ from "lodash";
 
 type Options = {
   id: string;
@@ -53,12 +54,25 @@ type SearchProps = {
 const Search = ({ setLatitude, setLongitude }: SearchProps) => {
   const [options, setOptions] = useState<Options>([]);
   console.log(options);
+  const debouncedLoadOptions = _.debounce(loadOptions, 1000);
   return (
     <Autocomplete
       options={options}
       autoHighlight
-      renderInput={(params) => <TextField {...params} label="Type your city" />}
-      onInputChange={(e, val) => loadOptions(val, setOptions)}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Type your city"
+          sx={{
+            fieldset: {
+              border: "2px solid grey",
+              borderRadius: "16px",
+              boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+            },
+          }}
+        />
+      )}
+      onInputChange={(e, val) => debouncedLoadOptions(val, setOptions)}
       filterOptions={(option) => option}
       onChange={(e, val) => {
         console.log("sel");
