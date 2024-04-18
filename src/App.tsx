@@ -8,31 +8,30 @@ const App = () => {
   const [latitude, setLatitude] = useState<number>(50.11262375912861);
   const [longitude, setLongitude] = useState<number>(14.469758137148327);
   const [data, setData] = useState<WeatherDataType>(null);
-  console.log(latitude, longitude);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(position.coords.latitude);
-      setLongitude(position.coords.longitude);
-    });
+    const successCallback = (position: any) => {
+      const newLatitude = position.coords.latitude;
+      const newLongitude = position.coords.longitude;
+
+      setLatitude(newLatitude);
+      setLongitude(newLongitude);
+    };
+    navigator.geolocation.getCurrentPosition(successCallback);
   }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch(
+      const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather/?lat=${latitude}&lon=${longitude}&units=metric&APPID=ef0494f73cfc0bd0feeb383fc9b32268`,
-      )
-        .then((response) => response.json())
-        .then((result) => {
-          setData(result);
-        });
+      );
+      const result = await response.json();
+      setData(result);
     };
-
     if (latitude && longitude) {
       fetchData();
     }
   }, [latitude, longitude]);
-
   return data?.main && (
     <Weather
       setLatitude={setLatitude}

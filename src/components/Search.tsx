@@ -1,5 +1,5 @@
+import { TextField, Autocomplete } from "@mui/material";
 import { Dispatch, SetStateAction, useState } from "react";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
 type Options = {
   id: string;
@@ -25,13 +25,22 @@ const loadOptions = (inputValue: string, setOptions: Dispatch<SetStateAction<Opt
   )
     .then((response) => response.json())
     .then((result) => {
-      const formattedResult = result.data.map((city: City) => {
+      console.log(result);
+      const formattedResults = (result.data ?? []).map((city: City) => {
         return {
           id: `${city.latitude} ${city.longitude}`,
-          name: `${city.name}, ${city.countryCode}`,
+          label: `${city.name}, ${city.countryCode}`,
         };
       });
-      setOptions(formattedResult);
+      const filteredResults = [];
+      formattedResults.forEach((result) => {
+        const labels = filteredResults.map((res) => res.label);
+        if (!labels.includes(result.label)) {
+          filteredResults.push(result);
+        }
+      });
+      setOptions(filteredResults);
+      console.log(formattedResults, filteredResults);
     })
     .catch((err) => console.error(err));
 };
@@ -43,21 +52,20 @@ type SearchProps = {
 
 const Search = ({ setLatitude, setLongitude }: SearchProps) => {
   const [options, setOptions] = useState<Options>([]);
-
+  console.log(options);
   return (
-    <div>
-      <ReactSearchAutocomplete
-        onSearch={(val) => {
-          if (val.length > 2) loadOptions(val, setOptions);
-        }}
-        inputDebounce={1000}
-        items={options}
-        onSelect={(city) => {
-          setLatitude(Number(city.id.split(" ")[0]));
-          setLongitude(Number(city.id.split(" ")[1]));
-        }}
-      />
-    </div>
+    <Autocomplete
+      options={options}
+      autoHighlight
+      renderInput={(params) => <TextField {...params} label="Type your city" />}
+      onInputChange={(e, val) => loadOptions(val, setOptions)}
+      filterOptions={(option) => option}
+      onChange={(e, val) => {
+        console.log("sel");
+        setLatitude(Number(val.id.split(" ")[0]));
+        setLongitude(Number(val.id.split(" ")[1]));
+      }}
+    />
   );
 };
 export default Search;
