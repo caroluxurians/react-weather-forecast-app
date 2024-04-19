@@ -5,6 +5,7 @@ import _ from "lodash";
 type Options = {
   id: string;
   name: string;
+  label: string;
 }[];
 type City = {
   latitude: number;
@@ -34,14 +35,14 @@ const loadOptions = (inputValue: string, setOptions: Dispatch<SetStateAction<Opt
         };
       });
       const filteredResults = [];
-      formattedResults.forEach((result) => {
+      formattedResults.forEach((result: Options) => {
         const labels = filteredResults.map((res) => res.label);
         if (!labels.includes(result.label)) {
           filteredResults.push(result);
         }
       });
       setOptions(filteredResults);
-      console.log(formattedResults, filteredResults);
+      // console.log(formattedResults, filteredResults);
     })
     .catch((err) => console.error(err));
 };
