@@ -59,10 +59,12 @@ const Search = ({ setLatitude, setLongitude }: SearchProps) => {
     <Autocomplete
       options={options}
       autoHighlight
+      className="autocomplete"
       renderInput={(params) => (
         <TextField
           {...params}
           label="Type your city"
+          className="input"
           sx={{
             fieldset: {
               border: "2px solid grey",
@@ -70,6 +72,7 @@ const Search = ({ setLatitude, setLongitude }: SearchProps) => {
               boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
             },
           }}
+        // InputProps={{ style: { backgroundColor: "white" } }}
         />
       )}
       onInputChange={(e, val) => debouncedLoadOptions(val, setOptions)}
